@@ -1,16 +1,31 @@
 package exception;
 
+import java.util.Random;
+
 public class First {
 
     public static void main(String[] args) {
-        divideByZero();
-        accessToUnexistingElement();
-        playWithNullPointer();
-        tryToCreateFunnyArray();
-        searchSomethingOutString();
-        System.out.println("Ура! Меня снова печают");
+        try {
+            throwRandomException();
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            System.out.println("Ура! Меня снова печают");
+        }
     }
 
+    public static void throwRandomException() {
+        Random random = new Random();
+        int exp = random.nextInt(6);
+
+        switch (exp) {
+            case 1: divideByZero();
+            case 2: accessToUnexistingElement();
+            case 3: playWithNullPointer();
+            case 4: tryToCreateFunnyArray();
+            case 5: searchSomethingOutString();
+        }
+    }
 
     public static void divideByZero() {
         int a = 777 / (666 - 666);
